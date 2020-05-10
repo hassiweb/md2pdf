@@ -1,0 +1,17 @@
+version: "3.4"
+
+services:
+    pandoc:
+        image: "hassiweb/pandoc"
+        build: pandoc-latex/
+        volumes: 
+            - ./docs/:/data
+        # entrypoint: /bin/bash        
+        command: >
+            test.md
+            -s
+            -o test.pdf
+            --pdf-engine=lualatex
+            -V documentclass=ltjsarticle 
+            -V classoption=pandoc
+            --lua-filter /opt/lualatex/filter/gitlab-math.lua

@@ -1,0 +1,41 @@
+stages:
+    - docker-build
+    - pandoc-convert
+
+variables:
+    IMAGE_VERSION: "1.0"
+
+docker-build:
+    stage: docker-build
+    when: manual
+    only: 
+        changes:
+            - docker/*
+    image: docker:latest
+    services:
+        - docker:dind
+    variables:
+        REGISTRY_URL: $CI_REGISTRY
+        IMAGE_NAME: pandoc-latex
+        IMAGE_TAG: $CI_REGISTRY/$CI_PROJECT_NAMESPACE/$CI_PROJECT_NAME/$IMAGE_NAME:$IMAGE_VERSION
+    before_script:
+        - docker login -u $CI_REGISTRY_USER -p $CI_REGISTRY_PASSWORD $CI_REGISTRY
+        - docker login -u $CI_REGISTRY_USER -p $CI_BUILD_TOKEN $REGISTRY_URL
+    script:
+        - echo $CI_REGISTRY_IMAGE
+        - echo $IMAGE_TAG
+        - echo $CI_PROJECT_NAME
+        - docker build -f pandoc-latex/Dockerfile -t $IMAGE_TAG pandoc-latex/
+        - docker push $IMAGE_TAG
+        
+md2pdf:
+    stage: pandoc-convert
+    image: registry.gitlab.com/hassiweb-programming/pandoc/pandoc-latex:$IMAGE_VERSION
+    variables:
+        - PANDOC_OPTIONS: "-s --pdf-engine=lualatex -V documentclass=ltjsarticle -V classoption=pandoc --lua-filter /opt/lualatex/filter/gitlab-math.lua"
+    script:
+        - files="docs/*.md"
+        - for filepath in $files; do
+        -   pandoc $filepath.md -o $filepath.pdf ${PANDOC_OPTIONS}
+        - done
+
