@@ -32,7 +32,7 @@ md2pdf:
     stage: pandoc-convert
     image: registry.gitlab.com/hassiweb-programming/pandoc/pandoc-latex:$IMAGE_VERSION
     variables:
-        - PANDOC_OPTIONS: "-s --pdf-engine=lualatex -V documentclass=ltjsarticle -V classoption=pandoc --lua-filter /opt/lualatex/filter/gitlab-math.lua"
+        PANDOC_OPTIONS: "-s --pdf-engine=lualatex -V documentclass=ltjsarticle -V classoption=pandoc --lua-filter /opt/lualatex/filter/gitlab-math.lua"
     script:
         - files="docs/*.md"
         - for filepath in $files; do
