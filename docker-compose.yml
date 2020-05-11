@@ -2,13 +2,13 @@ version: "3.4"
 
 services:
     pandoc:
-        image: "hassiweb/pandoc"
-        build: pandoc-latex/
+        image: "registry.gitlab.com/hassiweb-programming/md2pdf"
+        build: docker/
         volumes: 
             - ./docs/:/data
         # entrypoint: /bin/bash        
         command: >
-            test.md
+            pandoc test.md
             -s
             -o test.pdf
             --pdf-engine=lualatex
