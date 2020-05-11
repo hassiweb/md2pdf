@@ -58,5 +58,5 @@ md2pdf:
         - done
     artifacts:
         paths:
-            - "artifacts/*.pdf"
+            - "docs/*.pdf"
 
