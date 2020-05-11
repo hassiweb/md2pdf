@@ -8,9 +8,9 @@ variables:
 docker-build:
     stage: docker-build
     when: manual
-    only: 
-        changes:
-            - docker/*
+    # only: 
+    #     changes:
+    #         - docker/*
     image: docker:latest
     services:
         - docker:dind
