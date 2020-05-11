@@ -37,7 +37,7 @@ md2pdf:
         - mkdir ./artifacts
         - files="docs/*.md"
         - for filepath in $files; do
-        -   pandoc $filepath.md -o artifacts/$filepath.pdf ${PANDOC_OPTIONS}
+        -   pandoc docs/$filepath.md -o artifacts/$filepath.pdf ${PANDOC_OPTIONS}
         - done
     artifacts:
         paths:
