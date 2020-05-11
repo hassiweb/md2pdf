@@ -34,8 +34,12 @@ md2pdf:
     variables:
         PANDOC_OPTIONS: "-s --pdf-engine=lualatex -V documentclass=ltjsarticle -V classoption=pandoc --lua-filter /opt/lualatex/filter/gitlab-math.lua"
     script:
+        - mkdir ./artifacts
         - files="docs/*.md"
         - for filepath in $files; do
-        -   pandoc $filepath.md -o $filepath.pdf ${PANDOC_OPTIONS}
+        -   pandoc $filepath.md -o artifacts/$filepath.pdf ${PANDOC_OPTIONS}
         - done
+    artifacts:
+        paths:
+            - "artifacts/*.pdf"
 
