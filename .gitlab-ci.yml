@@ -25,12 +25,12 @@ docker-build:
         - echo $CI_REGISTRY_IMAGE
         - echo $IMAGE_TAG
         - echo $CI_PROJECT_NAME
-        - docker build -f pandoc-latex/Dockerfile -t $IMAGE_TAG pandoc-latex/
+        - docker build -f docker/Dockerfile -t $IMAGE_TAG docker/
         - docker push $IMAGE_TAG
         
 md2pdf:
     stage: pandoc-convert
-    image: registry.gitlab.com/hassiweb-programming/pandoc/pandoc-latex:$IMAGE_VERSION
+    image: registry.gitlab.com/hassiweb-programming/md2pdf/pandoc-latex:$IMAGE_VERSION
     variables:
         PANDOC_OPTIONS: "-s --pdf-engine=lualatex -V documentclass=ltjsarticle -V classoption=pandoc --lua-filter /opt/lualatex/filter/gitlab-math.lua"
     script:
