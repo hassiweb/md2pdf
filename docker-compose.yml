@@ -6,7 +6,6 @@ services:
         build: docker/
         volumes: 
             - ./docs/:/data
-        # entrypoint: /bin/bash        
         command: >
             pandoc test.md
             -s

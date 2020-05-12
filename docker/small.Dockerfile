@@ -44,6 +44,3 @@ RUN apt-get autoclean \
     /var/tmp/* 
 
 WORKDIR /data
-# ENTRYPOINT [ "pandoc" ]
-# CMD [ "-h" ]
-
