@@ -51,6 +51,7 @@ md2pdf:
     variables:
         PANDOC_OPTIONS: "-s --pdf-engine=lualatex -V documentclass=ltjsarticle -V classoption=pandoc --lua-filter /opt/lualatex/filter/gitlab-math.lua"
     script:
+        - set +e # disable exit on error
         - mkdir ./artifacts
         - files="docs/*.md"
         - for filepath in $files; do

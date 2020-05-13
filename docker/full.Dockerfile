@@ -21,7 +21,7 @@ RUN cd /tmp \
     "option_src 0" \
     > ./install-tl-unx/texlive.profile \
  && ./install-tl-unx/install-tl \
-    -profile ./install-tl-unx/texlive.profile \
+    -profile ./install-tl-unx/texlive.profile
 
 
 # Install Pandoc from a deb package file (choose your suitable version from https://github.com/jgm/pandoc/releases)
