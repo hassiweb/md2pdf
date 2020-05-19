@@ -7,7 +7,7 @@ RUN apt-get update \
     wget unzip ghostscript perl-modules
 
 # Install TeX Live
-ENV TL_VERSION 2020
+ENV TL_VERSION 2019
 ENV TL_PATH /usr/local/texlive
 ENV PATH ${TL_PATH}/bin/x86_64-linux:/bin:${PATH}
 RUN cd /tmp \

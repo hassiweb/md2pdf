@@ -3,7 +3,7 @@ stages:
     - pandoc-convert
 
 variables:
-    IMAGE_VERSION: "latest"
+    IMAGE_VERSION: "2019"
 
 docker-build:
     stage: docker-build
