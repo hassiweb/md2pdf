@@ -3,11 +3,7 @@ stages:
     - pandoc-convert
 
 variables:
-<<<<<<< HEAD
     IMAGE_VERSION: "2019"
-=======
-    IMAGE_VERSION: "1.0"
->>>>>>> b233edbabfc730dd80f0fcc209a0987052b57956
 
 docker-full-image-build:
     stage: docker-build
